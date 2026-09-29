@@ -1,0 +1,78 @@
+# 公开发布参数
+
+> 本文件记录这份 App 产品说明**公开发布所依据的参数**，随资料一同公开。
+> 文件底部的机器可读块是发布判据的**唯一来源**，由仓库门禁 `scripts/check_app_public_release_guard.js` 逐字校验（含变异验证）：**改状态必须同批改说明**。
+> **纪律（fail-closed）**：参数未全部拍板前**不得推送公开仓**，且机器可读块的 `publicRepoPushAuthorized` 必须保持 `false`；反过来，参数**全部拍板后**必须把 `publicRepoPushAuthorized` 置 `true`（双向校验，由门禁逐字强制）。
+
+## 1. 发布参数
+
+| # | 参数 | 状态 | 内容 / 待办 |
+| --- | --- | --- | --- |
+| 1 | 文件夹名 | **已定** | `app-place`（本窗口落地；改名须同批改门禁的目录常量与路径表述）。**刻意不叫 `xiaodou-app`**：发布用 `git commit-tree HEAD:<目录>`，而 Flutter 主工程是 `xiaodou_app/`，只差一个字符——打错就是把主工程源码树推成公开仓，且门禁（校验内容源）拦不住发布命令里的笔误 |
+| 2 | 独立仓 slug 与归属 | **已拍板** | GitHub 组织 `xiaodou-official` × 仓 slug `xiaodou-app` ⇒ `github.com/xiaodou-official/xiaodou-app`；Gitee 镜像 `gitee.com/lu-wulei/xiaodou-app`（两侧同名，与两个姊妹仓同法）。组织由同一运营主体持有，**许可证署名主体与该组织一致** |
+| 3 | 可见范围 | **已拍板** | **公开仓** |
+| 4 | 许可证 | **已拍板** | **内容 = CC BY 4.0**（[`LICENSE`](./LICENSE)）；本目录无示例代码，故不设代码许可 |
+| 5 | 发布方式与差异清单签收人 | **已拍板** | 发布方式 = **单树快照**（`git commit-tree HEAD:app-place`，与姊妹仓同法：单一内容源、无二次拷贝）。差异清单签收人：`luwulei` |
+| 6 | **截图脱敏** | **已完成** | 原始真机截图取自**真实账号**，含真实昵称、头像、性别认证徽章、会员等级、离线时间、聊天内真人照片、IP 属地、集市真实店铺名与商品名。已按 `scripts/redact_app_screenshots.py` 的 SPEC 打码并**经程序校验**（判据=每个打码矩形只剩棋盘格调色板）。**原始图不得进本目录** |
+
+## 2. 公开面口径（与姊妹仓的差异）
+
+- **唯一对外入口** = <https://www.xiaodouap.cn/>（官网首页即 Android 版下载落地页）。官网以外的自有域（卖家门户、下载子域、对象存储）**一律不进正文**。
+- **品牌与产品名是本目录的主题**，不做品牌中立——与 `open-platform/` 的 `docs/` 正文（要求品牌中立）不同。
+- 集市与开放平台两仓的引用**只用 repo URL**（`github.com` / `gitee.com`），不引它们的自有域——各自的面由各自的仓承载。
+- 乘客专属内容不进本目录：无凭证、无生效费率、无内部商户标识。
+- 本目录**不进服务端供数面**（不进 RP 镜像、不进门户下载包），是纯公开说明面。
+
+## 3. 事实来源与写作纪律
+
+本目录的每一句产品事实以**代码、生效配置与已发布合同**为准，并遵守：
+
+1. **功能照写，但不自称「社交」**（产品负责人 2026-09-29 拍板）：可以写聊天、群组沟通、群组管理（含大群管理）、卖家客户管理、交易、隐私保护；**不写**「社交平台」「社交软件」「交友」这类**品类自称**。
+2. **保留的边界句（不许省）**：**不提供直播、多方通话或音视频会议**；一对一实时语音与视频需双方同意、默认灰度关闭、不作为卖点。
+3. **「敬请期待」不许写成「已支持」**：iOS 与鸿蒙 NEXT 现在是「敬请期待」，写成已上线就是不实陈述。
+4. **不写死费率、限额与时效数字**：这类值随渠道与运行配置变化，一律**指向生效配置**（App 内页面 / 卖家中心）。本目录只保留**结构性事实**（如「群容量最大 3000 人」），不写分档明细。
+5. **不转载高危词清单**：姊妹仓 `xiaodou-market` 曾因 README **逐条转载《禁售目录》**被 Gitee 判定违规并返回 **HTTP 451**（解法=改成合规声明 + 指向产品页）。本目录**不复制任何禁售/高危类目清单**——合规表态指向产品页即可。
+6. **不写死活动截止日期**：福利活动的适用条件、赠送时长与截止日期都是**运行时可配置且版本化发布**的值（`WelfareCampaignConfig`，默认 `enabled=false`），而本目录是**静态文件**。写死日期 = 配置一改就变成不实陈述且无人收到通知。一律写「以 App 内活动页公示的当期内容为准」。
+7. **不使用绝对化与保证性表述**（如「一定到账」「绝不丢失」）。
+8. **不宣称平台是支付机构或资金托管方**：资金由持牌第三方支付机构清算。
+
+### 3.1 需要人工同步的内容（**变更时必须同批更新并重推公开仓**）
+
+⚠️ **本仓特有的缺口：门禁对图片完全失明。** `FORBIDDEN_RULES` 的检出正则只扫文本像素，**图片里的数字、昵称、限额一概拦不住**。因此清单里凡是标注「截图内」的项，**只能靠人**——出图时核对 + 每次重推前目视复核。
+
+| 内容 | 在哪 | 唯一权威来源 |
+| --- | --- | --- |
+| 群容量与分档 | 正文（仅「最大 3000 人」）+ **截图内为分档明细** | 建群页面的实际可选项与 VipContext 下发值 |
+| 群类型三档权益（普通 / VIP / 超级群） | **截图内** | 同上 |
+| 权益矩阵全部额度（撤回时长、群发次数、好友上限、云存储容量、黑名单人数等） | **截图内** | VipContext 权益矩阵（`vip_benefit_constants`） |
+| 群黑名单上限 | **截图内** | 群管理生效配置 |
+| 福利活动条件与截止日期 | 正文（**不写日期**，指向 App 内活动页） | `WelfareCampaignConfig` 当期生效版本 |
+| 密码规则（8–20 位、≥3 类字符） | 正文 | RP `passwordPolicy`（唯一权威） |
+
+> 这张表把「配置变了要重推」从口号变成**可勾选的清单**。门禁能保证格式与禁词，但**保证不了这些值和运行态一致**，也**看不见图片**——那一半只能靠人。
+
+### 3.2 发布前置：福利活动是否真的在发
+
+本项目历史上出现过一次真实事故：福利配置在管理端**显示「已发布已启用」，健康检查与后台任务也全部正常**，但最新注册用户持续显示为普通用户——**配置态是绿的，发放实际没有发生**。
+
+⇒ 在本目录写「当前有注册赠送 12 个月 VIP 的活动」之前，必须确认该活动**确实在发放**（配置已启用 + 处在有效窗口内 + 存在发放记录）。**配置启用 ≠ 真的在发。**
+
+## 4. 机器可读块（发布判据；改状态必须同批改说明）
+
+<!-- xd-app-publishing-parameters -->
+```json
+{
+  "schema": "xd-app-publishing-parameters/v1",
+  "items": [
+    { "id": 1, "key": "folderName", "status": "DECIDED", "currentValue": "app-place" },
+    { "id": 2, "key": "repoSlugAndOwner", "status": "DECIDED", "currentValue": "org=xiaodou-official; repo=xiaodou-app; mirror=gitee.com/lu-wulei/xiaodou-app" },
+    { "id": 3, "key": "visibility", "status": "DECIDED", "currentValue": "public" },
+    { "id": 4, "key": "licenses", "status": "DECIDED", "currentValue": "content=CC-BY-4.0" },
+    { "id": 5, "key": "publishMethodAndSigner", "status": "DECIDED", "currentValue": "publishMethod=git-commit-tree-single-tree-snapshot; signer=luwulei" },
+    { "id": 6, "key": "screenshotRedaction", "status": "DECIDED", "currentValue": "tool=scripts/redact_app_screenshots.py; verified=palette-only" }
+  ],
+  "publicRepoPushAuthorized": true,
+  "blockedReason": null
+}
+```
+<!-- /xd-app-publishing-parameters -->
