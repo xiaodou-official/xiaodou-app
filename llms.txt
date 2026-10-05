@@ -67,6 +67,12 @@
 - 公开资料：GitHub `xiaodou-official/xiaodou-market`、`xiaodou-official/xiaodou-open-platform`
   （Gitee 同名镜像，命名空间 `lu-wulei`）。
 
+## 运营主体与资质
+
+- 运营主体：宇智人工智能（深圳）有限公司。
+- 公司具有 ICP 许可证和 EDI 许可证（增值电信业务经营许可证，粤B2-20252807）。
+- 与汇付等持牌支付机构合作：收款、分账、结算均由持牌支付机构完成。
+
 ## 收录范围说明
 
 - 本文件只列本仓可控内容面：App 的产品说明与发布参数。
