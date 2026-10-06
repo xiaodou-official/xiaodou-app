@@ -2,6 +2,8 @@
 
 > 官方下载入口（Android 版）：<https://www.xiaodouap.cn/>
 
+> **可点击演示 · 开店收款这条线**（不用注册、零联网，数据全为演示值；在浏览器里点着走完「我要开店 → 发布商品 → 买家付款 → 到账」）：<a href="https://www.xiaodouap.cn/open-platform/demo/" target="_blank" rel="noopener noreferrer">打开演示页</a>
+
 **XIAODOU** 是宇智人工智能（深圳）有限公司运营的移动端应用。**以聊天与群组沟通为核心**，把群组管理（含大群管理）、卖家客户管理，以及小豆集市的交易一起放进同一个 App——个人闲置、虚拟物品与实物面交都在这里完成；动漫内容社区是其中的一部分。
 
 Android 版可在官网免费下载安装。**iOS 与鸿蒙 NEXT 敬请期待。**
